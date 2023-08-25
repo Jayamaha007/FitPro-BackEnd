@@ -14,7 +14,7 @@ app.use(express.json())
 
 app.use('/api/user',userRoutes)
 app.use('/api/workouts',workoutRoutes)
-app.use('/api/fitbits',fitbitRoutes)
+app.use('/api/getDailyProgress',fitbitRoutes)
 
  
 connectDB();

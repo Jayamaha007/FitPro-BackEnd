@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
-const workoutSchema = mongoose.Schema({
+const progressSchema = mongoose.Schema({
     workoutName : String,
     date : Date,
     calorieReserved : Number,
-    reps : Number
+    
 })
 
-const Workout = mongoose.model('Workouts',workoutSchema,'Workouts')
+const Progress = mongoose.model('DailyProgress',progressSchema,'DailyProgress')
 
-export default Workout;
+export default Progress;

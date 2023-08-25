@@ -1,8 +1,8 @@
 import express from "express";
-import { getDailyCaloriesFitBit } from "../controllers/workoutController.js";
+import { getDailyProgress } from "../controllers/workoutController.js";
 
 const fitbitRoutes = express.Router();
 
-fitbitRoutes.get('/',getDailyCaloriesFitBit)
+fitbitRoutes.get('/',getDailyProgress)
 
 export default fitbitRoutes;
