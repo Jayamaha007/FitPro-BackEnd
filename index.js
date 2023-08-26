@@ -5,6 +5,7 @@ import connectDB from "./db.js";
 import {getUser,createUser} from "./controllers/userController.js"
 import { getDailyProgress,getWorkouts,getMonthlyProgress } from "./controllers/workoutController.js";
 import { getMealProgress } from "./controllers/mealController.js";
+import { getDimensions } from "./controllers/bodydimenstionsController.js";
 
 
 
@@ -20,6 +21,7 @@ app.get('/api/workouts',getWorkouts)
 app.get('/api/getDailyProgress/:date',getDailyProgress)
 app.get('/api/getMonthlyProgress/:startDate/:endDate',getMonthlyProgress)
 app.get('/api/getMealProgress/:date', getMealProgress);
+app.get('/api/getDimensions/:name', getDimensions);
 
 
  
