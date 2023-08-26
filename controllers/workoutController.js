@@ -20,8 +20,11 @@ export const getWorkouts = async(req,res) => {
 
 export const getDailyProgress = async(req,res) => {
     try {
-        const url = 'https://api.fitbit.com/1/user/-/activities/date/2023-08-25.json'
-        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3bnV0IHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd3JlcyB3bG9jIiwiZXhwIjoxNjkzMDEyNTc0LCJpYXQiOjE2OTI5ODM3NzR9.DCPT5p8qxGePmkGmZ-qGJZL6DjMTsLC3JZ7sYfBnhR0'
+        
+        const { date } = req.params;
+        console.log(date);
+        const url = `https://api.fitbit.com/1/user/-/activities/date/${date}.json`;
+        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzMDQ4NDg2LCJpYXQiOjE2OTMwMTk2ODZ9.A_AQ8IWpiTWxVYS2Wy4ozesJpxThCOIrcLLhbj0Rcc0';
         
         const response = await fetch(url, {
             method: 'GET',
@@ -45,4 +48,30 @@ export const getDailyProgress = async(req,res) => {
         res.status(404).json({ message: error.message })
         
     }
+}
+
+export const getMonthlyProgress = async(req,res) => {
+    
+    try {
+        const { startDate, endDate } = req.params;
+
+        const url = `https://api.fitbit.com/1/user/-/activities/tracker/activityCalories/date/${startDate}/${endDate}.json`;
+        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzMDQ4NDg2LCJpYXQiOjE2OTMwMTk2ODZ9.A_AQ8IWpiTWxVYS2Wy4ozesJpxThCOIrcLLhbj0Rcc0';
+        
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const fitbitdata = await response.json()
+        res.status(200).json(fitbitdata)
+        console.log(fitbitdata)
+
+
+        
+    } catch (error) {
+        
+    }
+
 }
