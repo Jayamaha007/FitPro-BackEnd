@@ -3,6 +3,6 @@ import { getDailyProgress } from "../controllers/workoutController.js";
 
 const fitbitRoutes = express.Router();
 
-fitbitRoutes.get('/',getDailyProgress)
+fitbitRoutes.get('/:date',getDailyProgress)
 
 export default fitbitRoutes;
