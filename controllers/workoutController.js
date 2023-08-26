@@ -16,6 +16,19 @@ export const getWorkouts = async(req,res) => {
     }
 }
 
+export const postCompletedWorkouts = async(req,res) => {
+    try{
+        const workout = req.body;
+        const finWorkout = new Progress({...workout,creator:req.userId,createAt:new Date().toISOString()});
+        await finWorkout.save()
+        res.status(201).json(newUser);
+
+    }
+    catch(error){
+        res.status(404).json({ message: error.message })
+    }
+}
+
 
 
 export const getDailyProgress = async(req,res) => {
