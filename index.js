@@ -11,7 +11,7 @@ import { getDailyProgress,getWorkouts,getMonthlyProgress } from "./controllers/w
 const app = express()
 app.listen(5000,() => console.log('server started at 5000'))
 app.use(express.json())
-app.use(cors)
+app.use(cors());
 
 app.get('/api/user',getUser)
 app.post('/api/user',createUser)
