@@ -15,10 +15,6 @@ app.use(express.json());
 
 app.use(cors());
 
-const app = express();
-app.listen(5000, () => console.log("server started at 5000"));
-app.use(express.json());
-
 app.use("/api/user", userRoutes);
 app.use("/api/workouts", workoutRoutes);
 app.use("/api/getDailyProgress", fitbitRoutes);
