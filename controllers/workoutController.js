@@ -49,12 +49,13 @@ export const getDailyProgress = async(req,res) => {
 
         const Reservedcalories = await Progress.find({}, { calorieReserved: 1, _id: 0 })
         const totalReservedCalories = Reservedcalories.reduce((total, entry) => total + entry.calorieReserved, 0);
-        console.log("Total Burned Calories :" + fitbitdata.summary.activityCalories)   
+        const burnedCalories = fitbitdata.summary.activityCalories
+        console.log("Total Burned Calories :" + burnedCalories)   
         console.log("Total Calories to be burned :" + totalReservedCalories)
-        const progress = (fitbitdata.summary.activityCalories/totalReservedCalories) *100;
+        const progress = (burnedCalories/totalReservedCalories) *100;
         console.log("Progress for date :" + progress)
 
-        res.status(200).json(progress)
+        res.status(200).json({progress, totalReservedCalories, burnedCalories })
 
 
     } catch (error) {
