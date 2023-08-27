@@ -37,7 +37,7 @@ export const getDailyProgress = async(req,res) => {
         const { date } = req.params;
         console.log(date);
         const url = `https://api.fitbit.com/1/user/-/activities/date/${date}.json`;
-        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzMDQ4NDg2LCJpYXQiOjE2OTMwMTk2ODZ9.A_AQ8IWpiTWxVYS2Wy4ozesJpxThCOIrcLLhbj0Rcc0';
+        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzMTQ0NjgzLCJpYXQiOjE2OTMxMTU4ODN9.iUzGrJNSM5m1HYuWaFxJ3ie8utuDNQATgJPzfXLU0OY';
         
         const response = await fetch(url, {
             method: 'GET',
