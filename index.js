@@ -7,6 +7,7 @@ import {getUser,createUser} from "./controllers/userController.js"
 import { getDailyProgress,getWorkouts,getMonthlyProgress,getTotalMonthlyProgress } from "./controllers/workoutController.js";
 import { getMealProgress } from "./controllers/mealController.js";
 import { getDimensions } from "./controllers/bodydimenstionsController.js";
+import { getwholeMealbyType } from "./controllers/mealsController.js";
 import predictWorkout from './controllers/predictWorkoutController.js';
 
 
@@ -27,6 +28,7 @@ app.get('/api/getMonthlyProgress/:startDate/:endDate',getMonthlyProgress)
 app.get('/api/getTotalMonthlyProgress/:startDate/:endDate',getTotalMonthlyProgress)
 app.get('/api/getMealProgress/:date', getMealProgress);
 app.get('/api/getDimensions/:name', getDimensions);
+app.get('/api/getwholeMealbyType', getwholeMealbyType);
 app.post('/api/predict', predictWorkout);
 
 
