@@ -28,7 +28,7 @@ app.get('/api/getMonthlyProgress/:startDate/:endDate',getMonthlyProgress)
 app.get('/api/getTotalMonthlyProgress/:startDate/:endDate',getTotalMonthlyProgress)
 app.get('/api/getMealProgress/:date', getMealProgress);
 app.get('/api/getDimensions/:name', getDimensions);
-app.get('/api/getwholeMealbyType', getwholeMealbyType);
+app.get('/api/diets', getwholeMealbyType);
 app.post('/api/predict', predictWorkout);
 
 
