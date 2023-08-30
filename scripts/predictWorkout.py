@@ -1,18 +1,15 @@
-import sys
-import os
-import json
 import joblib
+import json
 
-def main():
-    user_input_str = sys.argv[1]
-    user_input = [float(val) for val in user_input_str.split(',')]
+# Load the trained model
+model_path = 'files/workoutModel.joblib'  # Relative path to your saved model
+model = joblib.load(model_path)
 
-    model_path = os.path.join(os.path.dirname(__file__), '..', 'files', 'workoutmodel.joblib')
+# Get user input from Node.js
+user_input = json.loads(input())
 
-    model = joblib.load(model_path)
+# Make a prediction using the loaded model
+recommendation = model.predict(user_input).tolist()
 
-    recommendation = model.predict([user_input])
-    print(json.dumps(recommendation.tolist()))
-
-if __name__ == '__main__':
-    main()
+# Return the recommendation as JSON
+print(json.dumps(recommendation))

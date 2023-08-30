@@ -9,6 +9,7 @@ import { getMealProgress } from "./controllers/mealController.js";
 import { getDimensions } from "./controllers/bodydimenstionsController.js";
 import { getwholeMealbyType } from "./controllers/mealsController.js";
 import predictWorkout from './controllers/predictWorkoutController.js';
+import { getDiets } from "./controllers/dietController.js";
 
 
 
@@ -23,12 +24,12 @@ app.use(bodyParser.json());
 app.get('/api/user',getUser)
 app.post('/api/user',createUser)
 app.get('/api/workouts',getWorkouts)
+app.get('/api/diets', getDiets);
 app.get('/api/getDailyProgress/:date',getDailyProgress)
 app.get('/api/getMonthlyProgress/:startDate/:endDate',getMonthlyProgress)
 app.get('/api/getTotalMonthlyProgress/:startDate/:endDate',getTotalMonthlyProgress)
 app.get('/api/getMealProgress/:date', getMealProgress);
 app.get('/api/getDimensions/:name', getDimensions);
-app.get('/api/diets', getwholeMealbyType);
 app.post('/api/predict', predictWorkout);
 
 
