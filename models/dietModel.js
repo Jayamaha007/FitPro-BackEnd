@@ -1,18 +1,17 @@
-// import mongoose from "mongoose";
+import mongoose from "mongoose";
 
-// const workoutSchema = mongoose.Schema({
-//     workoutName: String,
-//     workoutType: String,
-//     sets: Number,
-//     reps: Number,
-//     caloriesEstimation: Number,
-//     image: String,
-//     duration: Number,
-//     intensity: String,
-//     steps: [String],
-//     workoutPlace: String,
-// })
 
-// const Diet = mongoose.model('Workouts',workoutSchema,'Workouts')
+const mealPlanSchema = new mongoose.Schema({
+  dietType: String,
+  isVeg: String,
+  dayofWeek: String,
+  image: String,
+  breakfast: [String],
+  lunch: [String],
+  dinner: [String]
+});
 
-// export default Diet;
+
+const Diets = mongoose.model('Diets', mealPlanSchema,'Diets');
+
+export default Diets

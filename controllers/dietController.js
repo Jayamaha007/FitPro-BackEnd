@@ -1,11 +1,11 @@
 import express from "express";
-import Workout from "../models/workoutModel.js";
+import Diets from "../models/dietModel.js";
 
 
 export const getDiets = async(req,res) => {
     try{
         console.log(req.query);
-        const diets = await Workout.find(req.query);
+        const diets = await Diets.find(req.query);
         res.status(200).json(diets)
 
     }
