@@ -37,7 +37,7 @@ export const getDailyProgress = async(req,res) => {
         const { date } = req.params;
         console.log(date);
         const url = `https://api.fitbit.com/1/user/-/activities/date/${date}.json`;
-        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3bnV0IHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzMjYxODQ2LCJpYXQiOjE2OTMyMzMwNDZ9.J86rko7QhQf9YHrWpQClgti5SAZ-mSniLAZ5R8WIkg4';
+        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3bnV0IHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzNDgyNTY2LCJpYXQiOjE2OTM0NTM3NjZ9.28S6SS97DZx2ts8OaqQ0XgxfXg_5dTFUCG75eFbcI_Q';
         
         const response = await fetch(url, {
             method: 'GET',
@@ -70,7 +70,7 @@ export const getMonthlyProgress = async(req,res) => {
         const { startDate, endDate } = req.params;
 
         const url = `https://api.fitbit.com/1/user/-/activities/tracker/activityCalories/date/${startDate}/${endDate}.json`;
-        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3bnV0IHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzMjYxODQ2LCJpYXQiOjE2OTMyMzMwNDZ9.J86rko7QhQf9YHrWpQClgti5SAZ-mSniLAZ5R8WIkg4';
+        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3bnV0IHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzNDgyNTY2LCJpYXQiOjE2OTM0NTM3NjZ9.28S6SS97DZx2ts8OaqQ0XgxfXg_5dTFUCG75eFbcI_Q';
         
         const response = await fetch(url, {
             method: 'GET',
@@ -95,7 +95,7 @@ export const getTotalMonthlyProgress = async (req, res) => {
         const { startDate, endDate } = req.params;
 
         const url = `https://api.fitbit.com/1/user/-/activities/tracker/activityCalories/date/${startDate}/${endDate}.json`;
-        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3bnV0IHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzMjYxODQ2LCJpYXQiOjE2OTMyMzMwNDZ9.J86rko7QhQf9YHrWpQClgti5SAZ-mSniLAZ5R8WIkg4'; // Replace this with your actual access token
+        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3bnV0IHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzNDgyNTY2LCJpYXQiOjE2OTM0NTM3NjZ9.28S6SS97DZx2ts8OaqQ0XgxfXg_5dTFUCG75eFbcI_Q'; // Replace this with your actual access token
         const startDateObj = new Date(startDate);
         const endDateObj = new Date(endDate);
 
@@ -132,8 +132,9 @@ export const getTotalMonthlyProgress = async (req, res) => {
                 }
             ]);
     
-            if (totalCalories.length === 0) {
-                return res.status(404).json({ message: "No data found for the specified date range." });
+            if (totalBurnedCalories.length === 0) {
+                totalBurnedCalories = 0
+                return res.status(200).json(totalBurnedCalories);
             }
 
         res.status(200).json({ totalBurnedCalories,totalCalories: totalCalories[0].totalCalories });
