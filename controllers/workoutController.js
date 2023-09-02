@@ -70,7 +70,7 @@ export const getMonthlyProgress = async(req,res) => {
         const { startDate, endDate } = req.params;
 
         const url = `https://api.fitbit.com/1/user/-/activities/tracker/activityCalories/date/${startDate}/${endDate}.json`;
-        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3bnV0IHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzNDgyNTY2LCJpYXQiOjE2OTM0NTM3NjZ9.28S6SS97DZx2ts8OaqQ0XgxfXg_5dTFUCG75eFbcI_Q';
+        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzNjc2MDYyLCJpYXQiOjE2OTM2NDcyNjJ9.801S1VhVuWRBPeDdzBy5poWjdQLMh2LhgCQaMGB7pCc        ';
         
         const response = await fetch(url, {
             method: 'GET',
@@ -95,10 +95,9 @@ export const getTotalMonthlyProgress = async (req, res) => {
         const { startDate, endDate } = req.params;
 
         const url = `https://api.fitbit.com/1/user/-/activities/tracker/activityCalories/date/${startDate}/${endDate}.json`;
-        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3bnV0IHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzNDgyNTY2LCJpYXQiOjE2OTM0NTM3NjZ9.28S6SS97DZx2ts8OaqQ0XgxfXg_5dTFUCG75eFbcI_Q'; // Replace this with your actual access token
+        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd2VjZy93c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzNjc2MDYyLCJpYXQiOjE2OTM2NDcyNjJ9.801S1VhVuWRBPeDdzBy5poWjdQLMh2LhgCQaMGB7pCc'; // Replace this with your actual access token
         const startDateObj = new Date(startDate);
         const endDateObj = new Date(endDate);
-
 
         const response = await fetch(url, {
             method: 'GET',
@@ -106,42 +105,49 @@ export const getTotalMonthlyProgress = async (req, res) => {
                 'Authorization': `Bearer ${token}`
             }
         });
-        
+
         const fitbitdata = await response.json();
         console.log(fitbitdata);
 
         // Calculate the total values
-        const totalBurnedCalories = fitbitdata['activities-tracker-activityCalories']
-            .map(entry => parseInt(entry.value))
-            .reduce((acc, value) => acc + value, 0);
+        let totalBurnedCalories = 0;
+        if (fitbitdata['activities-tracker-activityCalories']) {
+            totalBurnedCalories = fitbitdata['activities-tracker-activityCalories']
+                .map(entry => parseInt(entry.value))
+                .reduce((acc, value) => acc + value, 0);
+        }
 
-            const totalCalories = await Progress.aggregate([
-                {
-                    $match: {
-                        date: {
-                            $gte: startDateObj,
-                            $lte: endDateObj
-                        }
-                    }
-                },
-                {
-                    $group: {
-                        _id: null,
-                        totalCalories: { $sum: "$calorieReserved" }
+        
+        let totalCalories = await Progress.aggregate([
+            {
+                $match: {
+                    date: {
+                        $gte: startDateObj,
+                        $lte: endDateObj
                     }
                 }
-            ]);
-    
-            if (totalBurnedCalories.length === 0) {
-                totalBurnedCalories = 0
-                return res.status(200).json(totalBurnedCalories);
+            },
+            {
+                $group: {
+                    _id: null,
+                    totalCalories: { $sum: "$calorieReserved" }
+                }
             }
+        ]);
 
-        res.status(200).json({ totalBurnedCalories,totalCalories: totalCalories[0].totalCalories });
+        if (totalCalories.length === 0) {
+            totalCalories = 0
+            res.status(200).json({ totalBurnedCalories, totalCalories });
+        }
+
+        totalCalories = totalCalories[0].totalCalories; // Set totalCalories to the correct value
+
+        res.status(200).json({ totalBurnedCalories, totalCalories });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'An error occurred' });
     }
 };
+
 
 
