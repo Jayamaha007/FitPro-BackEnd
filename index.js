@@ -4,7 +4,7 @@ import connectDB from "./db.js";
 import bodyParser from 'body-parser';
 
 import {getUser,createUser} from "./controllers/userController.js"
-import { getDailyProgress,getWorkouts,getMonthlyProgress,getTotalMonthlyProgress } from "./controllers/workoutController.js";
+import { getDailyProgress,getWorkouts,getMonthlyProgress,getTotalMonthlyProgress,getActivityLevel } from "./controllers/workoutController.js";
 import { getMealProgress } from "./controllers/mealController.js";
 import { getDimensions } from "./controllers/bodydimenstionsController.js";
 import { getwholeMealbyType } from "./controllers/mealsController.js";
@@ -32,6 +32,7 @@ app.get('/api/getTotalMonthlyProgress/:startDate/:endDate',getTotalMonthlyProgre
 app.get('/api/getMealProgress/:date', getMealProgress);
 app.get('/api/getDimensions/:name', getDimensions);
 app.post('/api/predict', predictWorkout);
+app.get('/api/getActivityLevel/:date',getActivityLevel)
 
 
 

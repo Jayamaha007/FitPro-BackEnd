@@ -3,6 +3,10 @@ import Workout from "../models/workoutModel.js";
 import fetch from "node-fetch";
 import Progress from "../models/dailyProgressModel.js";
 
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JEWjMiLCJzdWIiOiJCRFBOSkQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzNzMxNjk5LCJpYXQiOjE2OTM3MDI4OTl9.b_g1-CTBT71niMRa3cTkj_7d429KtXcZgYpeDz1UqF8'
+
+
+
 
 export const getWorkouts = async(req,res) => {
     try{
@@ -37,7 +41,7 @@ export const getDailyProgress = async(req,res) => {
         const { date } = req.params;
         console.log(date);
         const url = `https://api.fitbit.com/1/user/-/activities/date/${date}.json`;
-        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3bnV0IHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzNDgyNTY2LCJpYXQiOjE2OTM0NTM3NjZ9.28S6SS97DZx2ts8OaqQ0XgxfXg_5dTFUCG75eFbcI_Q';
+       // const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JEWjMiLCJzdWIiOiJCRFBOSkQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3bnV0IHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzNjgxMzczLCJpYXQiOjE2OTM2NTI1NzN9.nsUhJmPgKwDjw2jpTxkpqhLoBK3HSzRDepz-EXPumxU';
         
         const response = await fetch(url, {
             method: 'GET',
@@ -70,7 +74,7 @@ export const getMonthlyProgress = async(req,res) => {
         const { startDate, endDate } = req.params;
 
         const url = `https://api.fitbit.com/1/user/-/activities/tracker/activityCalories/date/${startDate}/${endDate}.json`;
-        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzNjc2MDYyLCJpYXQiOjE2OTM2NDcyNjJ9.801S1VhVuWRBPeDdzBy5poWjdQLMh2LhgCQaMGB7pCc        ';
+        //const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JEWjMiLCJzdWIiOiJCRFBOSkQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3bnV0IHdzbGUgd2VjZyB3c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzNjgxMzczLCJpYXQiOjE2OTM2NTI1NzN9.nsUhJmPgKwDjw2jpTxkpqhLoBK3HSzRDepz-EXPumxU';
         
         const response = await fetch(url, {
             method: 'GET',
@@ -95,7 +99,6 @@ export const getTotalMonthlyProgress = async (req, res) => {
         const { startDate, endDate } = req.params;
 
         const url = `https://api.fitbit.com/1/user/-/activities/tracker/activityCalories/date/${startDate}/${endDate}.json`;
-        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1JDRFEiLCJzdWIiOiJCUENXUTYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd2VjZy93c29jIHdhY3Qgd294eSB3dGVtIHd3ZWkgd2NmIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjkzNjc2MDYyLCJpYXQiOjE2OTM2NDcyNjJ9.801S1VhVuWRBPeDdzBy5poWjdQLMh2LhgCQaMGB7pCc'; // Replace this with your actual access token
         const startDateObj = new Date(startDate);
         const endDateObj = new Date(endDate);
 
@@ -117,7 +120,6 @@ export const getTotalMonthlyProgress = async (req, res) => {
                 .reduce((acc, value) => acc + value, 0);
         }
 
-        
         let totalCalories = await Progress.aggregate([
             {
                 $match: {
@@ -135,9 +137,9 @@ export const getTotalMonthlyProgress = async (req, res) => {
             }
         ]);
 
+        // Set a default value for totalCalories if it's empty
         if (totalCalories.length === 0) {
-            totalCalories = 0
-            res.status(200).json({ totalBurnedCalories, totalCalories });
+            totalCalories = [{ totalCalories: 0 }];
         }
 
         totalCalories = totalCalories[0].totalCalories; // Set totalCalories to the correct value
@@ -148,6 +150,50 @@ export const getTotalMonthlyProgress = async (req, res) => {
         res.status(500).json({ error: 'An error occurred' });
     }
 };
+
+
+
+export const getActivityLevel = async (req, res) => {
+    try {
+        const { date } = req.params;
+        console.log(date);
+        const url = `https://api.fitbit.com/1/user/-/activities/date/${date}.json`;
+        
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        const fitbitData = await response.json();
+
+        // Extract relevant data from the Fitbit response
+        const { steps, summary: { fairlyActiveMinutes, lightlyActiveMinutes, veryActiveMinutes } } = fitbitData;
+       
+        // Calculate totalMinutes
+        const totalMinutes = fairlyActiveMinutes + lightlyActiveMinutes + veryActiveMinutes;
+
+        // Determine the activity level based on the given criteria
+        let activityLevel = 'Low';
+
+        if (steps < 5000 && totalMinutes < 30) {
+            activityLevel = 'Low';
+        } else if (steps >= 5000 && steps < 10000 && totalMinutes >= 30 && totalMinutes < 60) {
+            activityLevel = 'Moderate';
+        } else if (steps >= 10000 && totalMinutes >= 60) {
+            activityLevel = 'High';
+        }
+
+        res.status(200).json({ activityLevel });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+
 
 
 
