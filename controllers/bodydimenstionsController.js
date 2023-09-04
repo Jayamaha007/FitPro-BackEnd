@@ -11,6 +11,7 @@ export const getDimensions = async (req, res) => {
       }
   
       const dimensions = await Dimensions.findOne({ imageName: name });
+      console.log("Dimnesions :" + dimensions)
   
       if (!dimensions) {
         return res.status(404).json({ error: 'Dimensions not found' });
@@ -20,10 +21,12 @@ export const getDimensions = async (req, res) => {
       const hipSize = parseFloat(dimensions.hipSize);
       const waistSize = parseFloat(dimensions.waistSize);
       const gender = dimensions.gender
-      const hipWasiRatio = hipSize / waistSize;
+      const hipWasiRatio = (hipSize / waistSize).toFixed(2);
       
       console.log("GENDER "+ gender)
-  
+      console.log("hipSize "+ hipSize)
+      console.log("waistSize "+ waistSize)
+
       let riskLevel;
   
       if (dimensions.gender === 'female') {
@@ -34,7 +37,7 @@ export const getDimensions = async (req, res) => {
         } else {
           riskLevel = 'high';
         }
-      } else if (dimensions.gender === 'male') {
+      } else if (gender === 'male') {
         if (hipWasiRatio <= 0.95) {
           riskLevel = 'low';
         } else if (hipWasiRatio <= 1.0) {
