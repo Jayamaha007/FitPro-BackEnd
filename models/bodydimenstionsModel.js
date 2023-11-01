@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 
 const diemnsionSchema = new mongoose.Schema({
   imageName: String,
-  hipSize: String,
-  waistSize: String,
+  ratio: String,
   gender: String
 
 });

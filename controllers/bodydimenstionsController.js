@@ -18,14 +18,12 @@ export const getDimensions = async (req, res) => {
       }
   
       
-      const hipSize = parseFloat(dimensions.hipSize);
-      const waistSize = parseFloat(dimensions.waistSize);
+      const hipWasiRatio = parseFloat(dimensions.ratio);
       const gender = dimensions.gender
-      const hipWasiRatio = (hipSize / waistSize).toFixed(2);
+      
       
       console.log("GENDER "+ gender)
-      console.log("hipSize "+ hipSize)
-      console.log("waistSize "+ waistSize)
+      
 
       let riskLevel;
   
