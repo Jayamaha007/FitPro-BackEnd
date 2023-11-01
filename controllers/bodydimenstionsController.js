@@ -32,19 +32,19 @@ export const getDimensions = async (req, res) => {
 
       if (dimensions.gender === 'female') {
         if (hipWasiRatio <= 0.85) {
-          riskLevel = 'low';
+          riskLevel = 'Low';
         } else if (hipWasiRatio <= 0.90 && hipWasiRatio >= 0.85) {
-          riskLevel = 'moderate';
+          riskLevel = 'Moderate';
         } else if ( hipWasiRatio >= 0.90 ){
-          riskLevel = 'high';
+          riskLevel = 'High';
         }
       } else if (gender === 'male') {
         if (hipWasiRatio <= 0.90) {
-          riskLevel = 'low';
+          riskLevel = 'Low';
         } else if (hipWasiRatio <= 0.95 && hipWasiRatio >= 0.90 ) {
-          riskLevel = 'moderate';
+          riskLevel = 'Moderate';
         } else if ( hipWasiRatio >= 0.95 ){
-          riskLevel = 'high';
+          riskLevel = 'High';
         }
       }
 
